@@ -22,7 +22,7 @@ async function main() {
   // Listen to HTTP and WebSocket server
   const PORT = process.env.PORT || process.env.API_PORT
   httpServer.listen({ port: PORT }, () => {
-    info(`Server ready`)
+    info(`Server ready at port ${PORT}`)
   })
 }
 

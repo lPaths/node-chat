@@ -45,6 +45,7 @@ export function createSocketIO(httpServer) {
       })
     })
 
+    // User send message
     user.on(MESSAGE, ({ message, key }) => {
       const messageObj = {
         uid: user.id,
