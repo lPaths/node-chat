@@ -3,12 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": {
+    "email": "tienphat1501@gmail.com",
+    "name": "Phát Mai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lPaths/node-chat"
+  },
+  "bugs": {
+    "url": "https://github.com/lPaths/node-chat/issues"
+  },
   "scripts": {
-    "start": "nodemon",
-    "prod": "node index.js"
+    "dev": "nodemon",
+    "build": "parcel build src/server.js",
+    "start": "node index.js"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "4.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
@@ -18,7 +30,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "nodemon": "^2.0.3",
-    "prettier": "^2.0.5"
+    "nodemon": "2.0.4",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "2.0.5"
   }
 }

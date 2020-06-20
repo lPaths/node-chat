@@ -20,7 +20,7 @@ const logTime = () => {
   const now = new Date()
 
   return chalk.hex(LOG_COLORS.WARNING)(
-    `[${now.toLocaleDateString()} ${now.toLocaleTimeString([], { hour12: false })}]`
+    `[${now.toLocaleDateString()} ${now.toLocaleTimeString([], { hour12: false })}]`,
   )
 }
 

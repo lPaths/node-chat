@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
-import { createServer } from 'http'
 import cors from 'cors'
+import { createServer } from 'http'
 
 import { info } from './utils/chalk'
 import { createSocketIO } from './utils/socketIO'
