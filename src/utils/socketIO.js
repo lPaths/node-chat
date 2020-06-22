@@ -14,7 +14,9 @@ const MESSAGES = 'messages'
 export function createSocketIO(httpServer) {
   const ChatIO = socket(httpServer, { path: '/chat' })
 
+  // On user connects
   ChatIO.on('connect', (user) => {
+    // Add user to the store
     store.users[user.id] = {
       name: 'Unknown user',
       online: true,
@@ -23,20 +25,21 @@ export function createSocketIO(httpServer) {
 
     // User sets name
     user.on(SET_NAME, (name) => {
-      // Update user's new name to store object
+      // Update user's name
       store.users[user.id].name = name
 
       // Send user's new name to all clients except user
       user.broadcast.emit(USER_LIST, store.users)
     })
 
+    // Get user list
     user.on(USER_LIST, () => {
       user.emit(USER_LIST, store.users)
     })
 
+    // Get messages
     user.on(MESSAGES, ({ limit, offset = 0 }) => {
       const totalMessages = store.messages.length
-
       const from = totalMessages - offset - limit < 0 ? 0 : totalMessages - offset - limit
 
       user.emit(MESSAGES, {
@@ -45,7 +48,7 @@ export function createSocketIO(httpServer) {
       })
     })
 
-    // User send message
+    // User sends message
     user.on(MESSAGE, ({ message, key }) => {
       const messageObj = {
         uid: user.id,
@@ -62,6 +65,7 @@ export function createSocketIO(httpServer) {
       ChatIO.emit(MESSAGE, messageObj)
     })
 
+    // On user disconnects
     user.on('disconnect', () => {
       // Delete user from store
       store.users[user.id].online = false
